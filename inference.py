@@ -80,12 +80,15 @@ class SimpleInference:
 
         return prediction
 
-if __name__ == "__main__":
 
-    model = SimpleInference("BAAI/RoboBrain")
+if __name__ == "__main__":
+    model_id = "BAAI/RoboBrain"
+    lora_id = "BAAI/RoboBrain-LoRA-Affordance"
+    model = SimpleInference(model_id, lora_id)
 
     prompt = "What is shown in this image?"
     image = "http://images.cocodataset.org/val2017/000000039769.jpg"
-    
+
     pred = model.inference(prompt, image, do_sample=True)
     print(f"Prediction: {pred}")
+    model.visualization(pred, image, prompt)
